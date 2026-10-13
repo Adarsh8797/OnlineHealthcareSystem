@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.healthcare.ui.PatientDashboardController"
+            prefHeight="700" prefWidth="1200">
+
+    <left>
+        <VBox styleClass="sidebar" spacing="8">
+            <Label text="👤 Patient Panel" styleClass="sidebar-title"/>
+            <Button fx:id="btnBook" text="📅 Book Appointment" styleClass="sidebar-btn" onAction="#showBook"/>
+            <Button fx:id="btnHistory" text="📋 My Appointments" styleClass="sidebar-btn" onAction="#showHistory"/>
+            <Button fx:id="btnProfile" text="👤 My Profile" styleClass="sidebar-btn" onAction="#showProfile"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="🚪 Logout" styleClass="sidebar-btn" onAction="#handleLogout"/>
+        </VBox>
+    </left>
+
+    <top>
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="15">
+            <Label fx:id="pageTitle" text="Book Appointment" styleClass="topbar-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" text="Welcome, Patient" styleClass="topbar-welcome"/>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane fx:id="contentPane" styleClass="content-area">
+
+            <VBox fx:id="bookView" spacing="15">
+                <VBox styleClass="card" spacing="15" maxWidth="600">
+                    <Label text="Book New Appointment" styleClass="card-title"/>
+                    <Label text="Select Doctor:"/>
+                    <ComboBox fx:id="doctorCombo" prefWidth="400"/>
+                    <Label text="Select Date:"/>
+                    <DatePicker fx:id="datePicker" prefWidth="400"/>
+                    <Label text="Select Time:"/>
+                    <ComboBox fx:id="timeCombo" prefWidth="400"/>
+                    <Label text="Reason for Visit:"/>
+                    <TextArea fx:id="reasonArea" prefHeight="80" prefWidth="400" promptText="Describe your symptoms..."/>
+                    <Label fx:id="statusLabel" text=""/>
+                    <Button text="Book Appointment" styleClass="btn-primary" onAction="#bookAppointment"/>
+                </VBox>
+            </VBox>
+
+            <VBox fx:id="historyView" spacing="15" visible="false" managed="false">
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Label text="My Appointments" styleClass="card-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Refresh" styleClass="btn-primary" onAction="#loadHistory"/>
+                </HBox>
+                <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colHId" text="ID" prefWidth="60"/>
+                        <TableColumn fx:id="colHDoctor" text="Doctor" prefWidth="200"/>
+                        <TableColumn fx:id="colHDate" text="Date &amp; Time" prefWidth="180"/>
+                        <TableColumn fx:id="colHReason" text="Reason" prefWidth="220"/>
+                        <TableColumn fx:id="colHStatus" text="Status" prefWidth="110"/>
+                        <TableColumn fx:id="colHActions" text="Actions" prefWidth="130"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox fx:id="profileView" spacing="15" visible="false" managed="false">
+                <VBox styleClass="card" spacing="15" maxWidth="600">
+                    <Label text="My Profile" styleClass="card-title"/>
+                    <Label text="Full Name:"/>
+                    <TextField fx:id="profileName" prefWidth="400"/>
+                    <Label text="Email:"/>
+                    <TextField fx:id="profileEmail" prefWidth="400"/>
+                    <Label text="Phone:"/>
+                    <TextField fx:id="profilePhone" prefWidth="400"/>
+                    <Label text="Blood Group:"/>
+                    <TextField fx:id="profileBlood" prefWidth="400"/>
+                    <Label text="Address:"/>
+                    <TextArea fx:id="profileAddress" prefHeight="60" prefWidth="400"/>
+                    <Label fx:id="profileStatus" text=""/>
+                    <Button text="Save Changes" styleClass="btn-primary" onAction="#saveProfile"/>
+                </VBox>
+            </VBox>
+
+        </StackPane>
+    </center>
+</BorderPane>

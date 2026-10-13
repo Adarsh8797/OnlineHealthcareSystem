@@ -1,0 +1,21 @@
+# Compiled files
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database files (agar H2 use karte)
+*.mv.db
+*.trace.db
